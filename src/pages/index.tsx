@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './index.css';
+import Link from 'umi/link';
 
 export default function() {
   return (
@@ -10,16 +11,23 @@ export default function() {
       <div className={styles.body}>
         <ul className={styles.appList}>
           <li>
-            <div className={styles.appItem}>图书馆藏查询</div>
+            <Link to="/about">
+              <div className={styles.appItem}>馆藏书籍搜索</div>
+            </Link>
           </li>
           <li>
-            <div className={styles.appItem}>关于本站</div>
+            <Link to="/about">
+              <div className={styles.appItem}>关于本站</div>
+            </Link>
           </li>
         </ul>
         <div className={styles.more}>更多应用开发中，敬请期待</div>
       </div>
       <div className={styles.footer}>
-         by <a href="https://blog.izgq.net/" target="_blank">@zgq354</a>
+        by{' '}
+        <a href="https://blog.izgq.net/" target="_blank">
+          @zgq354
+        </a>
       </div>
     </div>
   );

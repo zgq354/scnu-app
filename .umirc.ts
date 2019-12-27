@@ -23,7 +23,7 @@ const config: IConfig = {
           webpackChunkName: true,
           loadingComponent: './components/Loading.tsx',
         },
-        title: 'scnu.app',
+        title: 'SCNU.APP',
         dll: false,
         routes: {
           exclude: [/components\//],

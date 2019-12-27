@@ -31,7 +31,7 @@
 }
 
 .appList > li:not(:first-child) {
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .appItem {
@@ -42,6 +42,10 @@
   border: 1px solid #ccc;
   text-align: center;
   cursor: pointer;
+}
+
+.appList a {
+  color: #2c3e50;
 }
 
 .more {
