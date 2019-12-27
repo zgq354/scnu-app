@@ -21,6 +21,7 @@ const config: IConfig = {
         dva: false,
         dynamicImport: {
           webpackChunkName: true,
+          loadingComponent: './components/Loading.tsx',
         },
         title: 'scnu.app',
         dll: false,

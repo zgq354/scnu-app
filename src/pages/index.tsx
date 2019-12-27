@@ -12,6 +12,9 @@ export default function() {
           <li>
             <div className={styles.appItem}>图书馆藏查询</div>
           </li>
+          <li>
+            <div className={styles.appItem}>关于本站</div>
+          </li>
         </ul>
         <div className={styles.more}>更多应用开发中，敬请期待</div>
       </div>
