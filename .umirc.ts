@@ -1,33 +1,34 @@
-import { IConfig } from 'umi-types';
+import { IConfig } from 'umi-types'; // ref: https://umijs.org/config/
 
-// ref: https://umijs.org/config/
-const config: IConfig =  {
+const config: IConfig = {
   treeShaking: true,
   routes: [
     {
+      path: '/about',
+      component: './about',
+    },
+    {
       path: '/',
-      component: '../layouts/index',
-      routes: [
-        { path: '/', component: '../pages/index' }
-      ]
-    }
+      component: '../pages/index',
+    },
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
-      antd: false,
-      dva: false,
-      dynamicImport: { webpackChunkName: true },
-      title: 'scnu.app',
-      dll: false,
-      
-      routes: {
-        exclude: [
-          /components\//,
-        ],
+    [
+      'umi-plugin-react',
+      {
+        antd: false,
+        dva: false,
+        dynamicImport: {
+          webpackChunkName: true,
+        },
+        title: 'scnu.app',
+        dll: false,
+        routes: {
+          exclude: [/components\//],
+        },
       },
-    }],
+    ],
   ],
-}
-
+};
 export default config;
