@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './index.css';
-import Link from 'umi/link';
+import router from 'umi/router';
 
 export default function() {
+  const navigateTo = useCallback(
+    ({ currentTarget }) => router.push(currentTarget.dataset.url),
+    [],
+  );
   return (
     <div className={styles.pageContainer}>
       <div className={styles.header}>
@@ -11,14 +15,14 @@ export default function() {
       <div className={styles.body}>
         <ul className={styles.appList}>
           <li>
-            <Link to="/about">
-              <div className={styles.appItem}>馆藏书籍搜索</div>
-            </Link>
+            <div className={styles.appItem} data-url='/lib' onClick={navigateTo}>
+              馆藏书籍搜索
+            </div>
           </li>
           <li>
-            <Link to="/about">
-              <div className={styles.appItem}>关于本站</div>
-            </Link>
+            <div className={styles.appItem} data-url='/about' onClick={navigateTo}>
+              关于本站
+            </div>
           </li>
         </ul>
         <div className={styles.more}>更多应用开发中，敬请期待</div>

@@ -1,0 +1,22 @@
+
+.back {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.back::after {
+  content: '';
+  position: absolute;
+  top: -.3em;
+  left: -6px;
+  width: calc(100% + 12px);
+  height: 1.6em;
+  background: transparent;
+}
+
+.back:hover {
+  color: #4e6e8e;
+}

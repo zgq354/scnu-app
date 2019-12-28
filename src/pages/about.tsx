@@ -1,11 +1,16 @@
 
 import React from 'react';
 
+import Back from '@/components/Back/Back';
 import styles from './about.css';
+
 
 export default function() {
   return (
     <div className={styles.pageContainer}>
+      <div className={styles.navbar}>
+        <Back />
+      </div>
       <div className={styles.header}>
         <h2>关于 SCNU.APP</h2>
       </div>

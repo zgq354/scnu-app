@@ -8,6 +8,22 @@ const config: IConfig = {
       component: './about',
     },
     {
+      path: '/lib/',
+      redirect: '/lib/search-book'
+    },
+    {
+      path: '/lib/search-book',
+      component: './lib/search-book',
+    },
+    {
+      path: '/lib/search-result',
+      component: './lib/search-result',
+    },
+    {
+      path: '/lib/book-detail',
+      component: './lib/book-detail',
+    },
+    {
       path: '/',
       component: '../pages/index',
     },
