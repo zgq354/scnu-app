@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import styles from './index.css';
 import router from 'umi/router';
 
+function navigateTo({ currentTarget }: Partial<Event>) {
+  router.push((currentTarget as HTMLDivElement).dataset.url || '');
+}
+
 export default function() {
-  const navigateTo = useCallback(
-    ({ currentTarget }) => router.push(currentTarget.dataset.url),
-    [],
-  );
   return (
     <div className={styles.pageContainer}>
       <div className={styles.header}>

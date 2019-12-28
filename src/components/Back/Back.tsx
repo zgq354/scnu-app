@@ -3,16 +3,12 @@ import router from 'umi/router';
 
 import styles from './Back.css';
 
+function goBack() {
+  router.goBack();
+}
+
 export default function Back() {
-  const goBack = useCallback(
-    () => {
-      router.goBack()
-    },
-    [],
-  )
   return (
-    <div className={styles.back} onClick={goBack}>
-      {'<< 返回'}
-    </div>
+    <div className={styles.back} onClick={goBack} />
   );
 }
