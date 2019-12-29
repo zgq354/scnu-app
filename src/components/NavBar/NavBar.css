@@ -1,5 +1,6 @@
 
 .navBar {
+  box-sizing: content-box;
   height: 45px;
   border-bottom: 1px solid #eee;
 }

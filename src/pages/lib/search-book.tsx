@@ -42,11 +42,18 @@ export default function SearchBook() {
             <h3>馆藏书籍搜索</h3>
           </div>
           <div className={styles.searchPageInput}>
-            <input placeholder="输入查找关键字" type="text" {...bind} />
+            <input placeholder="输入查找关键字" type="text" {...bind} onKeyPress={handleSearchInputEnter} />
           </div>
           <div className={styles.searchBtn} onClick={startSearch} />
         </div>
       </div>
     </div>
   );
+
+  function handleSearchInputEnter(ev: any) {
+    if (ev.key === 'Enter') {
+      ev.preventDefault();
+      startSearch();
+    }
+  }
 }
