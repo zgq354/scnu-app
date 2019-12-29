@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, ChangeEvent } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import NavBar from '@/components/NavBar/NavBar';
 import Loading from '@/components/Loading';
@@ -7,24 +7,32 @@ import commonStyles from './common.css';
 
 import routerTypes from 'umi/routerTypes';
 import Axios from 'axios';
+import router from 'umi/router';
+import { useInput } from '@/utils/util';
 
-const searchResultListInitial = [
-  {
-    author: '(挪威) 乔斯坦·贾德著',
-    callNo: 'I533.45/J321:4',
-    docTypeName: '中文图书',
-    isbn: '978-7-5063-9486-4',
-    marcRecNo: '4a314261656763305a6d4935334d5577424a664c62673d3d',
-    num: 1,
-    pubYear: '2017',
-    publisher: '作家出版社',
-    title: '苏菲的世界',
-  },
-];
-
-const EmptyResult: React.FC = () => {
-  return <div>找不到结果，换个关键字试试？</div>;
+interface searchResultObjectType {
+  total: number;
+  cost: number;
+  content: {
+    author: string;
+    callNo: string;
+    docTypeName: string;
+    isbn: string;
+    marcRecNo: string;
+    num: number;
+    pubYear: string;
+    publisher: string;
+    title: string;
+  }[];
 }
+
+const EmptyResult: React.FC<{ empty: boolean }> = ({ empty }) => {
+  return (
+    <div className={styles.resultEmpty}>
+      <p>{empty ? '输入书籍关键词，点击搜索按钮开始搜索' : '找不到结果，换个关键字试试？'}</p>
+    </div>
+  );
+};
 
 // Override location
 interface routerTypesWithQuery extends Omit<routerTypes, 'location'> {
@@ -33,29 +41,18 @@ interface routerTypesWithQuery extends Omit<routerTypes, 'location'> {
   }};
 };
 
-const useInput = (initialValue: string) => {
-  const [value, setValue] = useState(initialValue);
-  return {
-    value,
-    setValue,
-    reset: () => setValue(''),
-    bind: {
-      value,
-      onChange: (event: ChangeEvent) => {
-        setValue((event.target as HTMLInputElement).value);
-      }
-    }
-  };
-};
-
 const SearchResult: React.FC<routerTypesWithQuery> = (props) => {
   const { keywords: initialKeywords } = props.location.query;
   const { value: keywords, bind, reset} = useInput(initialKeywords);
-  const [currentKeywords, setCurrentKeywords] = useState(initialKeywords);
-  const [loading, setLoading] = useState(true);
-  const [searchResultList, setSearchResultList] = useState(searchResultListInitial);
+  const [loading, setLoading] = useState(false);
+  const [searchResultList, setSearchResultList] = useState<searchResultObjectType>({
+    total: 0,
+    cost: 0,
+    content: [],
+  });
 
   const fetchSearchResult = useCallback((async () => {
+    if (!keywords) return;
     setLoading(true);
     const { data } = await Axios.get('/api/library/search', {
       params: {
@@ -63,8 +60,7 @@ const SearchResult: React.FC<routerTypesWithQuery> = (props) => {
       }
     });
     setLoading(false);
-    setSearchResultList(data.content || []);
-    setCurrentKeywords(keywords);
+    setSearchResultList(data || {});
   }), [keywords]);
 
   useEffect(() => {
@@ -83,28 +79,31 @@ const SearchResult: React.FC<routerTypesWithQuery> = (props) => {
           <div className={styles.sectionSearchResult}>
             {loading ? (
               <Loading />
-            ) : searchResultList.length <= 0 ? (
-              <EmptyResult />
+            ) : searchResultList.content?.length <= 0 ? (
+              <EmptyResult empty={!initialKeywords} />
             ) : (
-              <div className={styles.resultList}>
-                {searchResultList.map(item => {
-                  return (
-                    <div key={item.num} className={styles.bookItem}>
-                      <div className={styles.bookCover}>
-                        <img src="http://placehold.it/150x200" />
+              <React.Fragment>
+                <div className={styles.resultInfo}>OPAC 为你找到了 {searchResultList.total} 条结果，耗时 {searchResultList.cost}s</div>
+                <div className={styles.resultList}>
+                  {searchResultList.content?.map(item => {
+                    return (
+                      <div key={item.num} className={styles.bookItem}>
+                        <div className={styles.bookCover}>
+                          <img src="http://placehold.it/150x200" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                          <div className={styles.bookTitle}>{item.title}</div>
+                          <p>{item.author}</p>
+                          <p>
+                            {item.publisher} {item.pubYear}
+                          </p>
+                          <p>{item.callNo}</p>
+                        </div>
                       </div>
-                      <div className={styles.bookInfo}>
-                        <div className={styles.bookTitle}>{item.title}</div>
-                        <p>{item.author}</p>
-                        <p>
-                          {item.publisher} {item.pubYear}
-                        </p>
-                        <p>{item.callNo}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              </React.Fragment>
             )}
           </div>
         </div>
@@ -120,10 +119,16 @@ const SearchResult: React.FC<routerTypesWithQuery> = (props) => {
   }
 
   function handleSearchBtnClick() {
-    // if (currentKeywords != keywords) {
-    //   fetchSearchResult();
-    // }
-    fetchSearchResult();
+    if (!loading && keywords) {
+      // router
+      router.replace({
+        pathname: '/lib/search-result',
+        query: {
+          keywords,
+        },
+      });
+      fetchSearchResult();
+    }
   }
 }
 

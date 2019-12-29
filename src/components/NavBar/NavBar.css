@@ -17,3 +17,35 @@
   font-size: 14px;
   font-weight: normal;
 }
+
+.home,
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 45px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.home::after,
+.back::after {
+  position: relative;
+  left: 2px;
+  content: '';
+  width: 15px;
+  height: 15px;
+  background: url(../../assets/back.svg) no-repeat;
+  background-size: cover;
+}
+
+.home::after {
+  left: 0;
+  background-image: url(../../assets/home.svg);
+}
+
+.home:hover,
+.back:hover {
+  background: #eee;
+}

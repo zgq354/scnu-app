@@ -39,19 +39,26 @@
   color: transparent;
 }
 
+.searchBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  margin: 0 auto;
+}
+
 .searchBtn {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
   width: 60px;
   height: 60px;
   border-radius: 60px;
-  background: #222;
+  background: #000;
 }
 
 .searchBtn:hover {
-  background: #000;
+  transform: scale(1.02);
 } 
 
 .searchBtn::after {

@@ -6,24 +6,12 @@ import router from 'umi/router';
 import commonStyles from './common.css';
 import styles from './search-book.css';
 
-const useInput = (initialValue: string) => {
-  const [value, setValue] = useState(initialValue);
-  return {
-    value,
-    setValue,
-    reset: () => setValue(''),
-    bind: {
-      value,
-      onChange: (event: ChangeEvent) => {
-        setValue((event.target as HTMLInputElement).value);
-      }
-    }
-  };
-};
+import { useInput } from '@/utils/util';
 
 export default function SearchBook() {
   const { value, bind, reset } = useInput('');
   const startSearch = useCallback(() => {
+    if (!value) return;
     router.push({
       pathname: '/lib/search-result',
       query: {
@@ -44,7 +32,9 @@ export default function SearchBook() {
           <div className={styles.searchPageInput}>
             <input placeholder="输入查找关键字" type="text" {...bind} onKeyPress={handleSearchInputEnter} />
           </div>
-          <div className={styles.searchBtn} onClick={startSearch} />
+          <div className={styles.searchBtnWrapper}>
+            <div className={styles.searchBtn} onClick={startSearch} />
+          </div>
         </div>
       </div>
     </div>

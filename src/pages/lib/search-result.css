@@ -46,11 +46,26 @@
 }
 
 .searchBtn:hover {
-  background: #666;
+  transform: scale(1.05);
 }
 
 .sectionSearchResult {
   margin-top: 15px;
+}
+
+/* fix bottom element margin */
+.sectionSearchResult::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: -1px;
+}
+
+.resultInfo {
+  margin-bottom: 10px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .bookItem {
@@ -61,6 +76,10 @@
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+
+.bookItem:hover {
+  transform: scale(1.01);
+} 
 
 .bookCover {
   width: 75px;
@@ -75,17 +94,39 @@
 }
 
 .bookInfo {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
   flex: 1 0 0;
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .bookInfo > p {
-  margin: 0 0 5px;
+  margin: 5px 0 0;
 }
 
 .bookTitle {
+  display: flex;
+  align-items: center;
   color: #000;
-  font-size: 18px;
-  margin-bottom: 12px;
+  font-size: 16px;
+  min-height: 35px;
+}
+
+.resultEmpty {
+  color: #666;
+  margin-top: 120px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.resultEmpty::before {
+  content: '';
+  display: block;
+  margin: 0 auto 25px;
+  width: 80px;
+  height: 80px;
+  background: url(../../assets/empty-list.svg) no-repeat;
+  background-size: cover;
 }
