@@ -153,10 +153,11 @@ const SearchResult: React.FC<routerTypesWithQuery> = props => {
                     style={{ overflow: 'none' }}
                   >
                     {searchResultList.content?.map(item => {
+                      const isbn = item.isbn.split(', ')[0];
                       return (
                         <div key={item.num} className={styles.bookItem}>
                           <div className={styles.bookCover}>
-                            <img src="http://placehold.it/150x200" />
+                            <img src={`https://scnuapp-douban.tql.today/cover/${isbn}.jpg`} />
                           </div>
                           <div className={styles.bookInfo}>
                             <div className={styles.bookTitle}>{item.title}</div>
