@@ -10,18 +10,17 @@ const config: IConfig = {
       {
         path: '/about',
         component: './about',
+        title: '关于 - SCNU.APP',
       },
       {
         path: '/lib/',
-        redirect: '/lib/search-book'
-      },
-      {
-        path: '/lib/search-book',
         component: './lib/search-book',
+        title: '书籍搜索 - SCNU.APP',
       },
       {
         path: '/lib/search-result',
         component: './lib/search-result',
+        title: '书籍搜索 - SCNU.APP',
       },
       {
         path: '/lib/book-detail',
@@ -50,6 +49,13 @@ const config: IConfig = {
         routes: {
           exclude: [/components\//],
         },
+      },
+    ],
+    [
+      'umi-plugin-sentry',
+      {
+        dsn: 'https://46949a7a95d84603ab8113307cb38db4@sentry.io/1868621',
+        log: process.env.NODE_ENV === 'development' ? true : false,
       },
     ],
   ],

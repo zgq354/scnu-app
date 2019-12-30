@@ -15,12 +15,12 @@ export default function() {
       <div className={styles.body}>
         <ul className={styles.appList}>
           <li>
-            <div className={styles.appItem} data-url='/lib' onClick={navigateTo}>
+            <div className={styles.appItem} data-url='/lib/' onClick={navigateTo}>
               馆藏书籍搜索
             </div>
           </li>
           <li>
-            <div className={styles.appItem} data-url='/about' onClick={navigateTo}>
+            <div className={styles.appItem} data-url='/about/' onClick={navigateTo}>
               关于本站
             </div>
           </li>

@@ -9,6 +9,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 15px;
+  line-height: 1;
 }
 
 .navBarContainer > h2 {

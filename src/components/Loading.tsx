@@ -8,3 +8,7 @@ export default function Loading() {
     </div>
   );
 }
+
+export const Spinner: React.FC<{ size?: number, thickness?: number }> = ({ size = 32, thickness = 3 }) => {
+  return (<DualRing color="#666" size={size} thickness={thickness} />);
+}
