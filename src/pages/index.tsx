@@ -11,6 +11,7 @@ export default function() {
     <div className={styles.pageContainer}>
       <div className={styles.header}>
         <h2>SCNU Web APPs</h2>
+        <p style={{ fontSize: '14px' }}>一些实用的在线小工具，持续更新中</p>
       </div>
       <div className={styles.body}>
         <ul className={styles.appList}>
@@ -30,8 +31,8 @@ export default function() {
       <div className={styles.footer}>
         by{' '}
         <a href="https://blog.izgq.net/" target="_blank">
-          @zgq354
-        </a>
+          zgq354
+        </a> @ <a href="https://i.scnu.edu.cn/" target="_blank">ISCNU</a>
       </div>
     </div>
   );

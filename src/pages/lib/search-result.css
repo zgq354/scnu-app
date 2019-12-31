@@ -69,6 +69,7 @@
 }
 
 .bookItem {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -77,10 +78,6 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   cursor: pointer;
 }
-
-.bookItem:hover {
-  transform: scale(1.01);
-} 
 
 .bookCover {
   width: 75px;
@@ -99,7 +96,7 @@
   flex-direction: column;
   min-height: 100px;
   flex: 1 0 0;
-  margin-left: 10px;
+  margin-left: 12px;
   font-size: 13px;
 }
 
@@ -109,10 +106,22 @@
 
 .bookTitle {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   color: #000;
   font-size: 16px;
   min-height: 35px;
+}
+
+.bookStatus {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 13px;
+}
+
+.bookStatusUnavaliable {
+  color: #aaa;
 }
 
 .resultEmpty {

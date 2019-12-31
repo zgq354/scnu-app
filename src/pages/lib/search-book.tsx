@@ -30,10 +30,22 @@ export default function SearchBook() {
             <h3>馆藏书籍搜索</h3>
           </div>
           <div className={styles.searchPageInput}>
-            <input placeholder="输入查找关键字" type="text" {...bind} onKeyPress={handleSearchInputEnter} />
+            <input
+              placeholder="输入查找关键字"
+              type="text"
+              {...bind}
+              onKeyPress={handleSearchInputEnter}
+            />
           </div>
           <div className={styles.searchBtnWrapper}>
             <div className={styles.searchBtn} onClick={startSearch} />
+          </div>
+          <div className={styles.boardcast}>
+            <p>
+              <a href="https://mp.weixin.qq.com/s?__biz=MzI5NTcwMzAyMQ==&mid=2247488356&idx=1&sn=39a98782663c1b600ec1f07008e87f6e" target="_blank">
+                第四届阅读马拉松阅读主题公布&书单票选！
+              </a>
+            </p>
           </div>
         </div>
       </div>

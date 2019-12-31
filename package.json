@@ -19,6 +19,7 @@
     "react-infinite-scroll-component": "^5.0.4"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.9",
     "@types/jest": "^23.3.12",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
