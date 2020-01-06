@@ -58,7 +58,7 @@ const LoadingSpinner: React.FC = () => {
 };
 
 const BookCardItem: React.FC<{ item: searchResultObjectType['content'][number] }> = ({ item }) => {
-  const [imgURL, setImgURL] = useState(bookDefaultImg);
+  const [imgURL, setImgURL] = useState(item.coverImg || bookDefaultImg);
   const [bookNum, setBookNum] = useState<resultItemImageAvlType['bookNum'] | null>(null);
   const [loading, setLoading] = useState(false);
   const { avaliable, total } = bookNum || {};
